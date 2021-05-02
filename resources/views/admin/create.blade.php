@@ -18,4 +18,12 @@
             </form>
         </div>
     </div>
+
+    @foreach ( $tags as $tag )
+        <div class ="checkbox">
+            <label >
+                <input type ="checkbox " name ="tags []" value ="{{ $tag ->id }}" > {{ $tag -> name }}
+            </label >
+        </div >
+    @endforeach
 @endsection

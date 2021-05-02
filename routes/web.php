@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +10,11 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+
+Route::get ('like/{id}', [
+    'uses' => 'PostController@getLikePost',
+    'as' => 'blog.post.like'
+]);
 
 Route::get('/', [
     'uses' => 'PostController@getIndex',
@@ -28,7 +33,7 @@ Route::get('about', function () {
 Route::group(['prefix' => 'admin'], function() {
     Route::get('', [
         'uses' => 'PostController@getAdminIndex',
-        'as' => 'admin.index'
+        'as' =>'admin.index'
     ]);
 
     Route::get('create', [
@@ -43,11 +48,17 @@ Route::group(['prefix' => 'admin'], function() {
 
     Route::get('edit/{id}', [
         'uses' => 'PostController@getAdminEdit',
-        'as' => 'admin.edit'
+        'as'=> 'admin.edit'
     ]);
 
     Route::post('edit', [
         'uses' => 'PostController@postAdminUpdate',
         'as' => 'admin.update'
     ]);
+
+    Route::get ('delete/{id}', [
+        'uses' => 'PostController@getAdminDelete',
+        'as' => 'admin.delete'
+    ]);
+
 });
